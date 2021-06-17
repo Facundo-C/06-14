@@ -1,29 +1,27 @@
-![imagen](https://www.fad.org.ar/wp-content/uploads/2020/10/circuloazul_dmd.jpg)
 ___
 # Usamos sequelize
->Crear la base de datos: asequelize
+#### Crear la base de datos: asequelize
 
->Crear un proyecto
->- npm init -y
+#### Crear un proyecto
+- npm init -y
 
->Dependencias a instalar:
->- npm i express
->- npm i dotenv
->- npm i sequelize mysql2
+#### Dependencias a instalar:
+- npm i express
+- npm i dotenv
+- npm i sequelize mysql2
 
->Dependencias a instalar de Desarrollo:
->- npm i sequelize-cli --D
+#### Dependencias a instalar de Desarrollo:
+- npm i sequelize-cli --D
 
->Crear en la raíz del proyecto los siguientes archivos:
->- .gitignore ( para ignorar los archivos de Git).  
->- .env (Para declarar las variables de entorno)
->- .sequelizerc 
+#### Crear en la raíz del proyecto los siguientes archivos:
+- .gitignore ( para ignorar los archivos de Git).  
+- .env (Para declarar las variables de entorno)
+- .sequelizerc 
 
->Abrir el archivo .gitignore y en su interior agregar:
->> /node_modules/
+#### Abrir el archivo .gitignore y en su interior agregar:
+- /node_modules/
 
->Abrir el archivo.env y en su interior agregar:
->
+#### Abrir el archivo.env y en su interior agregar:
 >DB_USERNAME= root
 DB_PASSWORD=
 DB_HOST= localhost
@@ -31,8 +29,8 @@ DB_DATABASE=asequelize
 DB_PORT=3306
 DB_DIALECT=mysql
 
->Abrir el archivo **.sequelizerc** y en su interior agregar:
->>const path = require('path')
+#### Abrir el archivo **.sequelizerc** y en su interior agregar:
+>const path = require('path')
 module.exports = {
 config: path.resolve('./src/database/config', 'config.js'),
 'models-path': path.resolve('./src/database/models'),
@@ -40,61 +38,48 @@ config: path.resolve('./src/database/config', 'config.js'),
 'migrations-path': path.resolve('./src/database/migrations'),
 }
 
+#### Abrir el archivo **app.js** y en su interior
+>const express = require('express');   
+const app = express();   
+const path = require('path');   
+const PORT = process.env.PORT || 3000   
+app.use(express.static(path.resolve(__dirname, '../public')));  
+app.use(express.json())  
+//URL encode  - Para que nos pueda llegar la información desde el formulario al req.body   
+app.use(express.urlencoded({ extended: false }));   
+app.use('/', (req, res) => res.json({ clave: "con el server" }));   
+app.listen(PORT, () => {   
+    console.log('Servidor corriendo en el puerto' + PORT)   
+}   
+);   
 
->Abrir el archivo **app.js** y en su interior
->>const express = require('express');
-const app = express();
-const path = require('path');
->>
->>const PORT = process.env.PORT || 3000
->>
->>app.use(express.static(path.resolve(__dirname, '../public')));
->>
->>app.use(express.json())
->>//URL encode  - Para que nos pueda llegar la información desde el formulario al req.body
->>app.use(express.urlencoded({ extended: false }));
->>
->>app.use('/', (req, res) => res.json({ clave: "con el server" }));
->>
->>app.listen(PORT, () => {
->>    console.log('Servidor corriendo en el puerto' + PORT)
->>}
->>
->>);
+#### Crear la carpeta en la raiz:
+- public  
+- src
 
->Crear la carpeta en la raiz:
->>public  
->>src
-
->Dentro de la carpeta src:
->>crear el archivo app.js
->>crear las carpetas routes y controller
+#### Dentro de la carpeta src:
+- crear el archivo app.js
+- crear las carpetas routes y controller
 
 >Ejecutar sequelize-cli init para crear las carpetas que menciona .sequelize
 
 
->Ingresar a src - config y en el interior del archivo config.js reemplazar todo por
->>// Para tomar lo parametros del env
->>require('dotenv').config()
->>
->>module.exports =
->>
->>{
->>
->>    "username": process.env.DB_USERNAME,
->>    "password": process.env.DB_PASSWORD,
->>    "database": process.env.DB_DATABASE,
->>    "host": process.env.DB_HOST,
->>    "port": process.env.DB_PORT,
->>    "dialect": process.env.DB_DIALECT,
->>
->>    seederStorage: "sequelize",
->>    seederStorageTableName: "seeds",
->>
->>    migrationStorage: "sequelize",
->>    migrationStorageTableName: "migrations"
->>
->>}
+#### Ingresar a src - config y en el interior del archivo config.js reemplazar todo por:
+>// Para tomar lo parametros del env   
+require('dotenv').config()   
+module.exports =   
+{   
+    "username": process.env.DB_USERNAME,   
+    "password": process.env.DB_PASSWORD,   
+    "database": process.env.DB_DATABASE,   
+    "host": process.env.DB_HOST,   
+    "port": process.env.DB_PORT,   
+    "dialect": process.env.DB_DIALECT,   
+    seederStorage: "sequelize",   
+    seederStorageTableName: "seeds",    
+    migrationStorage: "sequelize",   
+    migrationStorageTableName: "migrations"   
+}   
 ___
 >### _**Crear todos los modelos intervinientes**_
 >___
@@ -224,3 +209,4 @@ ___
 ### CREAR LA MIGRACION Y CREACION DE LAS TABLAS
 - sequelize db:migrate
 ___
+![imagen]()
