@@ -209,4 +209,5 @@ ___
 ### CREAR LA MIGRACION Y CREACION DE LAS TABLAS
 - sequelize db:migrate
 ___
-![imagen]()
+>Y el resultado es así:
+>>![Nos queda así](https://raw.githubusercontent.com/Facundo-C/06-14/main/ImagenModeloEntidadRelacion.png)
